@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WoodShop.UI.ViewModel;
 
 namespace WoodShop.UI
 {
@@ -20,9 +21,17 @@ namespace WoodShop.UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel vm;
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public MainWindow(MainWindowViewModel vm):this()
+        {
+            this.vm = vm;
+            DataContext = vm;
         }
     }
 }

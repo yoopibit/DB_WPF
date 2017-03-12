@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WoodShop.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="{Binding Title}" Height="350" Width="525">
     <Grid>
-        
+        <Button Command="{Binding MyCommand}" Content="asdfaf" CommandParameter="{Binding }"/>
     </Grid>
 </Window>

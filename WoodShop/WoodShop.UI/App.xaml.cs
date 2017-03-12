@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using WoodShop.UI.ViewModel;
 
 namespace WoodShop.UI
 {
@@ -13,5 +14,11 @@ namespace WoodShop.UI
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            var vm = new MainWindowViewModel();
+            var window = new MainWindow(vm);
+            window.Show();
+        }
     }
 }
