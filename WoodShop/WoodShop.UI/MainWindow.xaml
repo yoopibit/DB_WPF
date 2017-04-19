@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="{Binding Title}" Height="350" Width="525">
     <Grid>
-        <Button Command="{Binding MyCommand}" Content="asdfaf" CommandParameter="{Binding }"/>
+        <Button Command="{Binding MyCommand}" Content="asdfaf" CommandParameter="{Binding }" Margin="320,140,105,105"/>
     </Grid>
 </Window>
