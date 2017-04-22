@@ -16,9 +16,9 @@ namespace WoodShop.UI
     {
         public App()
         {
-            var vm = new MainWindowViewModel();
-            var window = new MainWindow(vm);
-            window.Show();
+            //var vm = new MainWindowViewModel();
+            //var window = new MainWindow(vm);
+            //window.Show();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace WoodShop.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProductType()
         {
-            this.Products = new HashSet<Product>();
+            this.ProductStore = new HashSet<ProductStore>();
         }
     
         public int PRODUCT_TYPE_ID { get; set; }
@@ -25,6 +25,6 @@ namespace WoodShop.Model
         public string descriptions { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<ProductStore> ProductStore { get; set; }
     }
 }

@@ -17,13 +17,13 @@ namespace WoodShop.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public WorkerPosition()
         {
-            this.Workers = new HashSet<Worker>();
+            this.Worker = new HashSet<Worker>();
         }
     
         public int WORKER_POSITION_ID { get; set; }
         public string position { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Worker> Workers { get; set; }
+        public virtual ICollection<Worker> Worker { get; set; }
     }
 }

@@ -17,21 +17,19 @@ namespace WoodShop.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.OrderDetails = new HashSet<OrderDetail>();
+            this.ProductStore = new HashSet<ProductStore>();
         }
     
-        public int PRODUCT_ID { get; set; }
-        public Nullable<int> STORE_ID { get; set; }
-        public Nullable<int> PRODUCT_INFO_ID { get; set; }
-        public Nullable<int> PRODUCT_TYPE_ID { get; set; }
-        public string data { get; set; }
+        public int PRODUCT_INFO_ID { get; set; }
+        public int COLOR_ID { get; set; }
+        public double lenght { get; set; }
+        public double width { get; set; }
+        public double height { get; set; }
+        public double weight { get; set; }
         public string name { get; set; }
-        public string description { get; set; }
     
+        public virtual Color Color { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        public virtual ProductInfo ProductInfo { get; set; }
-        public virtual ProductType ProductType { get; set; }
-        public virtual Store Store { get; set; }
+        public virtual ICollection<ProductStore> ProductStore { get; set; }
     }
 }

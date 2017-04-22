@@ -17,13 +17,13 @@ namespace WoodShop.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Color()
         {
-            this.ProductInfoes = new HashSet<ProductInfo>();
+            this.Product = new HashSet<Product>();
         }
     
         public int COLOR_ID { get; set; }
         public string color1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductInfo> ProductInfoes { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
     }
 }

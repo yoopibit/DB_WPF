@@ -17,22 +17,21 @@ namespace WoodShop.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Store()
         {
-            this.Orders = new HashSet<Order>();
-            this.Products = new HashSet<Product>();
-            this.StoreAddresses = new HashSet<StoreAddress>();
-            this.Workers = new HashSet<Worker>();
+            this.Order = new HashSet<Order>();
+            this.ProductStore = new HashSet<ProductStore>();
+            this.Worker = new HashSet<Worker>();
         }
     
         public int STORE_ID { get; set; }
+        public int ADDRESS_ID { get; set; }
         public string descriptions { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Order { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<ProductStore> ProductStore { get; set; }
+        public virtual StoreAddress StoreAddress { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StoreAddress> StoreAddresses { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Worker> Workers { get; set; }
+        public virtual ICollection<Worker> Worker { get; set; }
     }
 }

@@ -14,13 +14,19 @@ namespace WoodShop.Model
     
     public partial class StoreAddress
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public StoreAddress()
+        {
+            this.Store = new HashSet<Store>();
+        }
+    
         public int ADDRESS_ID { get; set; }
-        public Nullable<int> STORE_ID { get; set; }
         public string country { get; set; }
         public string city { get; set; }
         public string street { get; set; }
         public string building { get; set; }
     
-        public virtual Store Store { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Store> Store { get; set; }
     }
 }

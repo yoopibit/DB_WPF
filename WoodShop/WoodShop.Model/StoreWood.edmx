@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="WoodDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Color">
           <Key>
             <PropertyRef Name="COLOR_ID" />
@@ -12,23 +12,12 @@
           <Property Name="COLOR_ID" Type="int" Nullable="false" />
           <Property Name="color" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="CUSTOMER_ID" />
-          </Key>
-          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
-          <Property Name="phone_number" Type="varchar" MaxLength="255" />
-          <Property Name="rating" Type="int" />
-          <Property Name="first_name" Type="varchar" MaxLength="255" />
-          <Property Name="second_name" Type="varchar" MaxLength="255" />
-        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="ORDER_ID" />
           </Key>
           <Property Name="ORDER_ID" Type="int" Nullable="false" />
           <Property Name="STORE_ID" Type="int" />
-          <Property Name="CUSTOMER_ID" Type="int" />
           <Property Name="WORKER_ID" Type="int" />
           <Property Name="total_price" Type="money" />
           <Property Name="date" Type="datetime" />
@@ -44,42 +33,43 @@
         </EntityType>
         <EntityType Name="Product">
           <Key>
-            <PropertyRef Name="PRODUCT_ID" />
-          </Key>
-          <Property Name="PRODUCT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="STORE_ID" Type="int" />
-          <Property Name="PRODUCT_INFO_ID" Type="int" />
-          <Property Name="PRODUCT_TYPE_ID" Type="int" />
-          <Property Name="data" Type="nchar" MaxLength="10" />
-          <Property Name="name" Type="varchar" MaxLength="255" />
-          <Property Name="description" Type="varchar" MaxLength="8000" />
-        </EntityType>
-        <EntityType Name="ProductInfo">
-          <Key>
             <PropertyRef Name="PRODUCT_INFO_ID" />
           </Key>
           <Property Name="PRODUCT_INFO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="COLOR_ID" Type="int" Nullable="false" />
-          <Property Name="lenght" Type="float" />
-          <Property Name="width" Type="float" />
-          <Property Name="height" Type="float" />
-          <Property Name="weight" Type="float" />
-          <Property Name="price" Type="money" />
-          <Property Name="number" Type="int" />
+          <Property Name="lenght" Type="float" Nullable="false" />
+          <Property Name="width" Type="float" Nullable="false" />
+          <Property Name="height" Type="float" Nullable="false" />
+          <Property Name="weight" Type="float" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductStore">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STORE_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_INFO_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_TYPE_ID" Type="int" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="8000" />
+          <Property Name="price" Type="money" Nullable="false" />
+          <Property Name="number" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
             <PropertyRef Name="PRODUCT_TYPE_ID" />
           </Key>
           <Property Name="PRODUCT_TYPE_ID" Type="int" Nullable="false" />
-          <Property Name="type" Type="varchar" MaxLength="255" />
+          <Property Name="type" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="descriptions" Type="varchar" MaxLength="2048" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
             <PropertyRef Name="STORE_ID" />
           </Key>
-          <Property Name="STORE_ID" Type="int" Nullable="false" />
+          <Property Name="STORE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ADDRESS_ID" Type="int" Nullable="false" />
           <Property Name="descriptions" Type="varchar" MaxLength="2048" />
         </EntityType>
         <EntityType Name="StoreAddress">
@@ -87,7 +77,6 @@
             <PropertyRef Name="ADDRESS_ID" />
           </Key>
           <Property Name="ADDRESS_ID" Type="int" Nullable="false" />
-          <Property Name="STORE_ID" Type="int" />
           <Property Name="country" Type="varchar" MaxLength="255" />
           <Property Name="city" Type="varchar" MaxLength="255" />
           <Property Name="street" Type="varchar" MaxLength="255" />
@@ -107,34 +96,22 @@
           <Key>
             <PropertyRef Name="WORKER_ID" />
           </Key>
-          <Property Name="WORKER_ID" Type="int" Nullable="false" />
+          <Property Name="WORKER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MANAGER_ID" Type="int" />
-          <Property Name="STORE_ID" Type="int" />
-          <Property Name="WORKER_POSITION_ID" Type="int" />
-          <Property Name="phone_number" Type="varchar" MaxLength="255" />
+          <Property Name="STORE_ID" Type="int" Nullable="false" />
+          <Property Name="WORKER_POSITION_ID" Type="int" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="rating" Type="int" />
-          <Property Name="first_name" Type="varchar" MaxLength="255" />
-          <Property Name="second_name" Type="varchar" MaxLength="255" />
+          <Property Name="first_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="second_name" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="WorkerPosition">
           <Key>
             <PropertyRef Name="WORKER_POSITION_ID" />
           </Key>
           <Property Name="WORKER_POSITION_ID" Type="int" Nullable="false" />
-          <Property Name="position" Type="varchar" MaxLength="255" />
+          <Property Name="position" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Order_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CUSTOMER_ID" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="CUSTOMER_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_Store1">
           <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -172,10 +149,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDetail_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductStore" Type="Self.ProductStore" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Product">
+            <Principal Role="ProductStore">
               <PropertyRef Name="PRODUCT_ID" />
             </Principal>
             <Dependent Role="OrderDetail">
@@ -184,67 +161,67 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_ProductInfo">
-          <End Role="ProductInfo" Type="Self.ProductInfo" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductStore" Type="Self.ProductStore" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ProductInfo">
+            <Principal Role="Product">
               <PropertyRef Name="PRODUCT_INFO_ID" />
             </Principal>
-            <Dependent Role="Product">
+            <Dependent Role="ProductStore">
               <PropertyRef Name="PRODUCT_INFO_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_ProductType">
-          <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
+          <End Role="ProductStore" Type="Self.ProductStore" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductType">
               <PropertyRef Name="PRODUCT_TYPE_ID" />
             </Principal>
-            <Dependent Role="Product">
+            <Dependent Role="ProductStore">
               <PropertyRef Name="PRODUCT_TYPE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Store">
-          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="ProductStore" Type="Self.ProductStore" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Store">
               <PropertyRef Name="STORE_ID" />
             </Principal>
-            <Dependent Role="Product">
+            <Dependent Role="ProductStore">
               <PropertyRef Name="STORE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductInfo_Color">
           <End Role="Color" Type="Self.Color" Multiplicity="1" />
-          <End Role="ProductInfo" Type="Self.ProductInfo" Multiplicity="*" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Color">
               <PropertyRef Name="COLOR_ID" />
             </Principal>
-            <Dependent Role="ProductInfo">
+            <Dependent Role="Product">
               <PropertyRef Name="COLOR_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StoreAddress_Store">
-          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
-          <End Role="StoreAddress" Type="Self.StoreAddress" Multiplicity="*" />
+        <Association Name="FK_Store_StoreAddress">
+          <End Role="StoreAddress" Type="Self.StoreAddress" Multiplicity="1" />
+          <End Role="Store" Type="Self.Store" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Store">
-              <PropertyRef Name="STORE_ID" />
+            <Principal Role="StoreAddress">
+              <PropertyRef Name="ADDRESS_ID" />
             </Principal>
-            <Dependent Role="StoreAddress">
-              <PropertyRef Name="STORE_ID" />
+            <Dependent Role="Store">
+              <PropertyRef Name="ADDRESS_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Worker_Store">
-          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
           <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Store">
@@ -268,7 +245,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Worker_WorkerPosition">
-          <End Role="WorkerPosition" Type="Self.WorkerPosition" Multiplicity="0..1" />
+          <End Role="WorkerPosition" Type="Self.WorkerPosition" Multiplicity="1" />
           <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WorkerPosition">
@@ -310,23 +287,18 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="ModelStoreContainer">
+        <EntityContainer Name="WoodDBStoreContainer">
           <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductInfo" EntityType="Self.ProductInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductStore" EntityType="Self.ProductStore" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StoreAddress" EntityType="Self.StoreAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkerPosition" EntityType="Self.WorkerPosition" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_Store1" Association="Self.FK_Order_Store1">
             <End Role="Store" EntitySet="Store" />
             <End Role="Order" EntitySet="Order" />
@@ -340,28 +312,28 @@
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDetail_Product" Association="Self.FK_OrderDetail_Product">
-            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductStore" EntitySet="ProductStore" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductInfo" Association="Self.FK_Product_ProductInfo">
-            <End Role="ProductInfo" EntitySet="ProductInfo" />
             <End Role="Product" EntitySet="Product" />
+            <End Role="ProductStore" EntitySet="ProductStore" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductType" Association="Self.FK_Product_ProductType">
             <End Role="ProductType" EntitySet="ProductType" />
-            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductStore" EntitySet="ProductStore" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Store" Association="Self.FK_Product_Store">
             <End Role="Store" EntitySet="Store" />
-            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductStore" EntitySet="ProductStore" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductInfo_Color" Association="Self.FK_ProductInfo_Color">
             <End Role="Color" EntitySet="Color" />
-            <End Role="ProductInfo" EntitySet="ProductInfo" />
+            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK_StoreAddress_Store" Association="Self.FK_StoreAddress_Store">
-            <End Role="Store" EntitySet="Store" />
+          <AssociationSet Name="FK_Store_StoreAddress" Association="Self.FK_Store_StoreAddress">
             <End Role="StoreAddress" EntitySet="StoreAddress" />
+            <End Role="Store" EntitySet="Store" />
           </AssociationSet>
           <AssociationSet Name="FK_Worker_Store" Association="Self.FK_Worker_Store">
             <End Role="Store" EntitySet="Store" />
@@ -380,25 +352,14 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="WoodDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Color">
           <Key>
             <PropertyRef Name="COLOR_ID" />
           </Key>
           <Property Name="COLOR_ID" Type="Int32" Nullable="false" />
           <Property Name="color1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ProductInfoes" Relationship="Self.FK_ProductInfo_Color" FromRole="Color" ToRole="ProductInfo" />
-        </EntityType>
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="CUSTOMER_ID" />
-          </Key>
-          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
-          <Property Name="phone_number" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="rating" Type="Int32" />
-          <Property Name="first_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="second_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProductInfo_Color" FromRole="Color" ToRole="Product" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -406,14 +367,12 @@
           </Key>
           <Property Name="ORDER_ID" Type="Int32" Nullable="false" />
           <Property Name="STORE_ID" Type="Int32" />
-          <Property Name="CUSTOMER_ID" Type="Int32" />
           <Property Name="WORKER_ID" Type="Int32" />
           <Property Name="total_price" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="Store" Relationship="Self.FK_Order_Store1" FromRole="Order" ToRole="Store" />
           <NavigationProperty Name="Worker" Relationship="Self.FK_Order_Worker" FromRole="Order" ToRole="Worker" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+          <NavigationProperty Name="OrderDetail" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -424,72 +383,72 @@
           <Property Name="PRODUCT_ID" Type="Int32" />
           <Property Name="number" Type="Int32" />
           <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetail_Product" FromRole="OrderDetail" ToRole="Product" />
+          <NavigationProperty Name="ProductStore" Relationship="Self.FK_OrderDetail_Product" FromRole="OrderDetail" ToRole="ProductStore" />
         </EntityType>
         <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="PRODUCT_ID" />
-          </Key>
-          <Property Name="PRODUCT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="STORE_ID" Type="Int32" />
-          <Property Name="PRODUCT_INFO_ID" Type="Int32" />
-          <Property Name="PRODUCT_TYPE_ID" Type="Int32" />
-          <Property Name="data" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_Product" FromRole="Product" ToRole="OrderDetail" />
-          <NavigationProperty Name="ProductInfo" Relationship="Self.FK_Product_ProductInfo" FromRole="Product" ToRole="ProductInfo" />
-          <NavigationProperty Name="ProductType" Relationship="Self.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
-          <NavigationProperty Name="Store" Relationship="Self.FK_Product_Store" FromRole="Product" ToRole="Store" />
-        </EntityType>
-        <EntityType Name="ProductInfo">
           <Key>
             <PropertyRef Name="PRODUCT_INFO_ID" />
           </Key>
           <Property Name="PRODUCT_INFO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="COLOR_ID" Type="Int32" Nullable="false" />
-          <Property Name="lenght" Type="Double" />
-          <Property Name="width" Type="Double" />
-          <Property Name="height" Type="Double" />
-          <Property Name="weight" Type="Double" />
-          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="number" Type="Int32" />
-          <NavigationProperty Name="Color" Relationship="Self.FK_ProductInfo_Color" FromRole="ProductInfo" ToRole="Color" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Product_ProductInfo" FromRole="ProductInfo" ToRole="Product" />
+          <Property Name="lenght" Type="Double" Nullable="false" />
+          <Property Name="width" Type="Double" Nullable="false" />
+          <Property Name="height" Type="Double" Nullable="false" />
+          <Property Name="weight" Type="Double" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Color" Relationship="Self.FK_ProductInfo_Color" FromRole="Product" ToRole="Color" />
+          <NavigationProperty Name="ProductStore" Relationship="Self.FK_Product_ProductInfo" FromRole="Product" ToRole="ProductStore" />
+        </EntityType>
+        <EntityType Name="ProductStore">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STORE_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRODUCT_INFO_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRODUCT_TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="description" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="number" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderDetail" Relationship="Self.FK_OrderDetail_Product" FromRole="ProductStore" ToRole="OrderDetail" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_ProductInfo" FromRole="ProductStore" ToRole="Product" />
+          <NavigationProperty Name="ProductType" Relationship="Self.FK_Product_ProductType" FromRole="ProductStore" ToRole="ProductType" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_Product_Store" FromRole="ProductStore" ToRole="Store" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
             <PropertyRef Name="PRODUCT_TYPE_ID" />
           </Key>
           <Property Name="PRODUCT_TYPE_ID" Type="Int32" Nullable="false" />
-          <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descriptions" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Product_ProductType" FromRole="ProductType" ToRole="Product" />
+          <NavigationProperty Name="ProductStore" Relationship="Self.FK_Product_ProductType" FromRole="ProductType" ToRole="ProductStore" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
             <PropertyRef Name="STORE_ID" />
           </Key>
-          <Property Name="STORE_ID" Type="Int32" Nullable="false" />
+          <Property Name="STORE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADDRESS_ID" Type="Int32" Nullable="false" />
           <Property Name="descriptions" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Store1" FromRole="Store" ToRole="Order" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Store" FromRole="Store" ToRole="Product" />
-          <NavigationProperty Name="StoreAddresses" Relationship="Self.FK_StoreAddress_Store" FromRole="Store" ToRole="StoreAddress" />
-          <NavigationProperty Name="Workers" Relationship="Self.FK_Worker_Store" FromRole="Store" ToRole="Worker" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Store1" FromRole="Store" ToRole="Order" />
+          <NavigationProperty Name="ProductStore" Relationship="Self.FK_Product_Store" FromRole="Store" ToRole="ProductStore" />
+          <NavigationProperty Name="StoreAddress" Relationship="Self.FK_Store_StoreAddress" FromRole="Store" ToRole="StoreAddress" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_Store" FromRole="Store" ToRole="Worker" />
         </EntityType>
         <EntityType Name="StoreAddress">
           <Key>
             <PropertyRef Name="ADDRESS_ID" />
           </Key>
           <Property Name="ADDRESS_ID" Type="Int32" Nullable="false" />
-          <Property Name="STORE_ID" Type="Int32" />
           <Property Name="country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="city" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="street" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="building" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Store" Relationship="Self.FK_StoreAddress_Store" FromRole="StoreAddress" ToRole="Store" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_Store_StoreAddress" FromRole="StoreAddress" ToRole="Store" />
         </EntityType>
-        <EntityType Name="sysdiagram">
+        <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -503,15 +462,15 @@
           <Key>
             <PropertyRef Name="WORKER_ID" />
           </Key>
-          <Property Name="WORKER_ID" Type="Int32" Nullable="false" />
+          <Property Name="WORKER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MANAGER_ID" Type="Int32" />
-          <Property Name="STORE_ID" Type="Int32" />
-          <Property Name="WORKER_POSITION_ID" Type="Int32" />
-          <Property Name="phone_number" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="STORE_ID" Type="Int32" Nullable="false" />
+          <Property Name="WORKER_POSITION_ID" Type="Int32" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="rating" Type="Int32" />
-          <Property Name="first_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="second_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Worker" FromRole="Worker" ToRole="Order" />
+          <Property Name="first_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="second_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Worker" FromRole="Worker" ToRole="Order" />
           <NavigationProperty Name="Store" Relationship="Self.FK_Worker_Store" FromRole="Worker" ToRole="Store" />
           <NavigationProperty Name="Worker1" Relationship="Self.FK_Worker_Worker" FromRole="Worker" ToRole="Worker1" />
           <NavigationProperty Name="Worker2" Relationship="Self.FK_Worker_Worker" FromRole="Worker1" ToRole="Worker" />
@@ -522,30 +481,18 @@
             <PropertyRef Name="WORKER_POSITION_ID" />
           </Key>
           <Property Name="WORKER_POSITION_ID" Type="Int32" Nullable="false" />
-          <Property Name="position" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Workers" Relationship="Self.FK_Worker_WorkerPosition" FromRole="WorkerPosition" ToRole="Worker" />
+          <Property Name="position" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_WorkerPosition" FromRole="WorkerPosition" ToRole="Worker" />
         </EntityType>
         <Association Name="FK_ProductInfo_Color">
           <End Role="Color" Type="Self.Color" Multiplicity="1" />
-          <End Role="ProductInfo" Type="Self.ProductInfo" Multiplicity="*" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Color">
               <PropertyRef Name="COLOR_ID" />
             </Principal>
-            <Dependent Role="ProductInfo">
+            <Dependent Role="Product">
               <PropertyRef Name="COLOR_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CUSTOMER_ID" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="CUSTOMER_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -586,10 +533,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDetail_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductStore" Type="Self.ProductStore" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Product">
+            <Principal Role="ProductStore">
               <PropertyRef Name="PRODUCT_ID" />
             </Principal>
             <Dependent Role="OrderDetail">
@@ -598,55 +545,55 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_ProductInfo">
-          <End Role="ProductInfo" Type="Self.ProductInfo" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductStore" Type="Self.ProductStore" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ProductInfo">
+            <Principal Role="Product">
               <PropertyRef Name="PRODUCT_INFO_ID" />
             </Principal>
-            <Dependent Role="Product">
+            <Dependent Role="ProductStore">
               <PropertyRef Name="PRODUCT_INFO_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_ProductType">
-          <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
+          <End Role="ProductStore" Type="Self.ProductStore" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductType">
               <PropertyRef Name="PRODUCT_TYPE_ID" />
             </Principal>
-            <Dependent Role="Product">
+            <Dependent Role="ProductStore">
               <PropertyRef Name="PRODUCT_TYPE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Store">
-          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="ProductStore" Type="Self.ProductStore" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Store">
               <PropertyRef Name="STORE_ID" />
             </Principal>
-            <Dependent Role="Product">
+            <Dependent Role="ProductStore">
               <PropertyRef Name="STORE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StoreAddress_Store">
-          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
-          <End Role="StoreAddress" Type="Self.StoreAddress" Multiplicity="*" />
+        <Association Name="FK_Store_StoreAddress">
+          <End Role="StoreAddress" Type="Self.StoreAddress" Multiplicity="1" />
+          <End Role="Store" Type="Self.Store" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Store">
-              <PropertyRef Name="STORE_ID" />
+            <Principal Role="StoreAddress">
+              <PropertyRef Name="ADDRESS_ID" />
             </Principal>
-            <Dependent Role="StoreAddress">
-              <PropertyRef Name="STORE_ID" />
+            <Dependent Role="Store">
+              <PropertyRef Name="ADDRESS_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Worker_Store">
-          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
           <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Store">
@@ -670,7 +617,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Worker_WorkerPosition">
-          <End Role="WorkerPosition" Type="Self.WorkerPosition" Multiplicity="0..1" />
+          <End Role="WorkerPosition" Type="Self.WorkerPosition" Multiplicity="1" />
           <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WorkerPosition">
@@ -681,70 +628,65 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Store_wood_productsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Colors" EntityType="Self.Color" />
-          <EntitySet Name="Customers" EntityType="Self.Customer" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
-          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
-          <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="ProductInfoes" EntityType="Self.ProductInfo" />
-          <EntitySet Name="ProductTypes" EntityType="Self.ProductType" />
-          <EntitySet Name="Stores" EntityType="Self.Store" />
-          <EntitySet Name="StoreAddresses" EntityType="Self.StoreAddress" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Workers" EntityType="Self.Worker" />
-          <EntitySet Name="WorkerPositions" EntityType="Self.WorkerPosition" />
+        <EntityContainer Name="Store_wood_productsEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Color" EntityType="Self.Color" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="ProductStore" EntityType="Self.ProductStore" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" />
+          <EntitySet Name="Store" EntityType="Self.Store" />
+          <EntitySet Name="StoreAddress" EntityType="Self.StoreAddress" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Worker" EntityType="Self.Worker" />
+          <EntitySet Name="WorkerPosition" EntityType="Self.WorkerPosition" />
           <AssociationSet Name="FK_ProductInfo_Color" Association="Self.FK_ProductInfo_Color">
-            <End Role="Color" EntitySet="Colors" />
-            <End Role="ProductInfo" EntitySet="ProductInfoes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Order" EntitySet="Orders" />
+            <End Role="Color" EntitySet="Color" />
+            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Store1" Association="Self.FK_Order_Store1">
-            <End Role="Store" EntitySet="Stores" />
-            <End Role="Order" EntitySet="Orders" />
+            <End Role="Store" EntitySet="Store" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Worker" Association="Self.FK_Order_Worker">
-            <End Role="Worker" EntitySet="Workers" />
-            <End Role="Order" EntitySet="Orders" />
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="OrderDetail" EntitySet="OrderDetails" />
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDetail_Product" Association="Self.FK_OrderDetail_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="OrderDetail" EntitySet="OrderDetails" />
+            <End Role="ProductStore" EntitySet="ProductStore" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductInfo" Association="Self.FK_Product_ProductInfo">
-            <End Role="ProductInfo" EntitySet="ProductInfoes" />
-            <End Role="Product" EntitySet="Products" />
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductStore" EntitySet="ProductStore" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductType" Association="Self.FK_Product_ProductType">
-            <End Role="ProductType" EntitySet="ProductTypes" />
-            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="ProductStore" EntitySet="ProductStore" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Store" Association="Self.FK_Product_Store">
-            <End Role="Store" EntitySet="Stores" />
-            <End Role="Product" EntitySet="Products" />
+            <End Role="Store" EntitySet="Store" />
+            <End Role="ProductStore" EntitySet="ProductStore" />
           </AssociationSet>
-          <AssociationSet Name="FK_StoreAddress_Store" Association="Self.FK_StoreAddress_Store">
-            <End Role="Store" EntitySet="Stores" />
-            <End Role="StoreAddress" EntitySet="StoreAddresses" />
+          <AssociationSet Name="FK_Store_StoreAddress" Association="Self.FK_Store_StoreAddress">
+            <End Role="StoreAddress" EntitySet="StoreAddress" />
+            <End Role="Store" EntitySet="Store" />
           </AssociationSet>
           <AssociationSet Name="FK_Worker_Store" Association="Self.FK_Worker_Store">
-            <End Role="Store" EntitySet="Stores" />
-            <End Role="Worker" EntitySet="Workers" />
+            <End Role="Store" EntitySet="Store" />
+            <End Role="Worker" EntitySet="Worker" />
           </AssociationSet>
           <AssociationSet Name="FK_Worker_Worker" Association="Self.FK_Worker_Worker">
-            <End Role="Worker" EntitySet="Workers" />
-            <End Role="Worker1" EntitySet="Workers" />
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Worker1" EntitySet="Worker" />
           </AssociationSet>
           <AssociationSet Name="FK_Worker_WorkerPosition" Association="Self.FK_Worker_WorkerPosition">
-            <End Role="WorkerPosition" EntitySet="WorkerPositions" />
-            <End Role="Worker" EntitySet="Workers" />
+            <End Role="WorkerPosition" EntitySet="WorkerPosition" />
+            <End Role="Worker" EntitySet="Worker" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -762,11 +704,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(WoodDB.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(WoodDB.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -793,40 +735,28 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Store_wood_productsEntities">
-          <EntitySetMapping Name="Colors">
-            <EntityTypeMapping TypeName="Model.Color">
+        <EntityContainerMapping StorageEntityContainer="WoodDBStoreContainer" CdmEntityContainer="Store_wood_productsEntities1">
+          <EntitySetMapping Name="Color">
+            <EntityTypeMapping TypeName="WoodDB.Color">
               <MappingFragment StoreEntitySet="Color">
                 <ScalarProperty Name="COLOR_ID" ColumnName="COLOR_ID" />
                 <ScalarProperty Name="color1" ColumnName="color" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="Model.Customer">
-              <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
-                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
-                <ScalarProperty Name="rating" ColumnName="rating" />
-                <ScalarProperty Name="first_name" ColumnName="first_name" />
-                <ScalarProperty Name="second_name" ColumnName="second_name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="Model.Order">
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="WoodDB.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
                 <ScalarProperty Name="STORE_ID" ColumnName="STORE_ID" />
-                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
                 <ScalarProperty Name="WORKER_ID" ColumnName="WORKER_ID" />
                 <ScalarProperty Name="total_price" ColumnName="total_price" />
                 <ScalarProperty Name="date" ColumnName="date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="Model.OrderDetail">
+          <EntitySetMapping Name="OrderDetail">
+            <EntityTypeMapping TypeName="WoodDB.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetail">
                 <ScalarProperty Name="ORDER_DETAIL_ID" ColumnName="ORDER_DETAIL_ID" />
                 <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
@@ -835,35 +765,35 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="Model.Product">
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="WoodDB.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
-                <ScalarProperty Name="STORE_ID" ColumnName="STORE_ID" />
-                <ScalarProperty Name="PRODUCT_INFO_ID" ColumnName="PRODUCT_INFO_ID" />
-                <ScalarProperty Name="PRODUCT_TYPE_ID" ColumnName="PRODUCT_TYPE_ID" />
-                <ScalarProperty Name="data" ColumnName="data" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="description" ColumnName="description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductInfoes">
-            <EntityTypeMapping TypeName="Model.ProductInfo">
-              <MappingFragment StoreEntitySet="ProductInfo">
                 <ScalarProperty Name="PRODUCT_INFO_ID" ColumnName="PRODUCT_INFO_ID" />
                 <ScalarProperty Name="COLOR_ID" ColumnName="COLOR_ID" />
                 <ScalarProperty Name="lenght" ColumnName="lenght" />
                 <ScalarProperty Name="width" ColumnName="width" />
                 <ScalarProperty Name="height" ColumnName="height" />
                 <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductStore">
+            <EntityTypeMapping TypeName="WoodDB.ProductStore">
+              <MappingFragment StoreEntitySet="ProductStore">
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="STORE_ID" ColumnName="STORE_ID" />
+                <ScalarProperty Name="PRODUCT_INFO_ID" ColumnName="PRODUCT_INFO_ID" />
+                <ScalarProperty Name="PRODUCT_TYPE_ID" ColumnName="PRODUCT_TYPE_ID" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="number" ColumnName="number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductTypes">
-            <EntityTypeMapping TypeName="Model.ProductType">
+          <EntitySetMapping Name="ProductType">
+            <EntityTypeMapping TypeName="WoodDB.ProductType">
               <MappingFragment StoreEntitySet="ProductType">
                 <ScalarProperty Name="PRODUCT_TYPE_ID" ColumnName="PRODUCT_TYPE_ID" />
                 <ScalarProperty Name="type" ColumnName="type" />
@@ -871,19 +801,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Stores">
-            <EntityTypeMapping TypeName="Model.Store">
+          <EntitySetMapping Name="Store">
+            <EntityTypeMapping TypeName="WoodDB.Store">
               <MappingFragment StoreEntitySet="Store">
                 <ScalarProperty Name="STORE_ID" ColumnName="STORE_ID" />
+                <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
                 <ScalarProperty Name="descriptions" ColumnName="descriptions" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="StoreAddresses">
-            <EntityTypeMapping TypeName="Model.StoreAddress">
+          <EntitySetMapping Name="StoreAddress">
+            <EntityTypeMapping TypeName="WoodDB.StoreAddress">
               <MappingFragment StoreEntitySet="StoreAddress">
                 <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
-                <ScalarProperty Name="STORE_ID" ColumnName="STORE_ID" />
                 <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="city" ColumnName="city" />
                 <ScalarProperty Name="street" ColumnName="street" />
@@ -892,7 +822,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Model.sysdiagram">
+            <EntityTypeMapping TypeName="WoodDB.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -902,8 +832,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Workers">
-            <EntityTypeMapping TypeName="Model.Worker">
+          <EntitySetMapping Name="Worker">
+            <EntityTypeMapping TypeName="WoodDB.Worker">
               <MappingFragment StoreEntitySet="Worker">
                 <ScalarProperty Name="WORKER_ID" ColumnName="WORKER_ID" />
                 <ScalarProperty Name="MANAGER_ID" ColumnName="MANAGER_ID" />
@@ -916,28 +846,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="WorkerPositions">
-            <EntityTypeMapping TypeName="Model.WorkerPosition">
+          <EntitySetMapping Name="WorkerPosition">
+            <EntityTypeMapping TypeName="WoodDB.WorkerPosition">
               <MappingFragment StoreEntitySet="WorkerPosition">
                 <ScalarProperty Name="WORKER_POSITION_ID" ColumnName="WORKER_POSITION_ID" />
                 <ScalarProperty Name="position" ColumnName="position" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Model.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Model.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Model.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Model.Store.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="WoodDB.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="WoodDB.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="WoodDB.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="WoodDB.Store.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="WoodDB.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Model.Store.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="WoodDB.Store.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="WoodDB.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -946,8 +876,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Model.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Model.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="WoodDB.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="WoodDB.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -962,7 +892,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

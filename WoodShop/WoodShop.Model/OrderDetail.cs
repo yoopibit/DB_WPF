@@ -20,6 +20,6 @@ namespace WoodShop.Model
         public Nullable<int> number { get; set; }
     
         public virtual Order Order { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual ProductStore ProductStore { get; set; }
     }
 }

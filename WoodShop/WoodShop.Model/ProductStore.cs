@@ -12,21 +12,27 @@ namespace WoodShop.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class ProductStore
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
+        public ProductStore()
         {
-            this.Orders = new HashSet<Order>();
+            this.OrderDetail = new HashSet<OrderDetail>();
         }
     
-        public int CUSTOMER_ID { get; set; }
-        public string phone_number { get; set; }
-        public Nullable<int> rating { get; set; }
-        public string first_name { get; set; }
-        public string second_name { get; set; }
+        public int PRODUCT_ID { get; set; }
+        public int STORE_ID { get; set; }
+        public int PRODUCT_INFO_ID { get; set; }
+        public int PRODUCT_TYPE_ID { get; set; }
+        public System.DateTime date { get; set; }
+        public string description { get; set; }
+        public decimal price { get; set; }
+        public int number { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual ProductType ProductType { get; set; }
+        public virtual Store Store { get; set; }
     }
 }
