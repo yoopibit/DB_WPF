@@ -38,9 +38,17 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework.SqlServerCompact, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.SqlServerCompact.6.1.3\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -51,90 +59,101 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Color.cs">
-      <DependentUpon>StoreWood.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataContexts\Context\StoreWoodContext.cs" />
+    <Compile Include="DataContexts\Context\Worker.cs" />
     <Compile Include="Order.cs">
-      <DependentUpon>StoreWood.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderDetail.cs">
-      <DependentUpon>StoreWood.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
-      <DependentUpon>StoreWood.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductStore.cs">
-      <DependentUpon>StoreWood.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductType.cs">
-      <DependentUpon>StoreWood.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>StoreWood.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>StoreWood.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Store.cs">
-      <DependentUpon>StoreWood.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="StoreAddress.cs">
-      <DependentUpon>StoreWood.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="StoreWood.Context.cs">
+    <Compile Include="StoreWoodShopDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StoreWood.Context.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="StoreWood.cs">
+    <Compile Include="StoreWoodShopDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StoreWood.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="StoreWood.Designer.cs">
+    <Compile Include="StoreWoodShopDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StoreWood.edmx</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>StoreWood.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Worker.cs">
-      <DependentUpon>StoreWood.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="WorkerPosition.cs">
-      <DependentUpon>StoreWood.tt</DependentUpon>
+      <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="StoreWood.edmx">
+    <EntityDeploy Include="StoreWoodShopDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StoreWood.Designer.cs</LastGenOutput>
+      <LastGenOutput>StoreWoodShopDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="StoreWood.edmx.diagram">
-      <DependentUpon>StoreWood.edmx</DependentUpon>
+    <None Include="StoreWoodShopDB.edmx.diagram">
+      <DependentUpon>StoreWoodShopDB.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="StoreWood.Context.tt">
+    <Folder Include="Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="StoreWoodShopDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StoreWood.edmx</DependentUpon>
-      <LastGenOutput>StoreWood.Context.cs</LastGenOutput>
+      <DependentUpon>StoreWoodShopDB.edmx</DependentUpon>
+      <LastGenOutput>StoreWoodShopDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="StoreWood.tt">
+    <Content Include="StoreWoodShopDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StoreWood.edmx</DependentUpon>
-      <LastGenOutput>StoreWood.cs</LastGenOutput>
+      <DependentUpon>StoreWoodShopDB.edmx</DependentUpon>
+      <LastGenOutput>StoreWoodShopDB.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
+    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

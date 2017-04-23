@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WoodDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ModelDb.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Color">
           <Key>
             <PropertyRef Name="COLOR_ID" />
@@ -42,6 +42,7 @@
           <Property Name="height" Type="float" Nullable="false" />
           <Property Name="weight" Type="float" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="id" Type="int" />
         </EntityType>
         <EntityType Name="ProductStore">
           <Key>
@@ -287,7 +288,7 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="WoodDBStoreContainer">
+        <EntityContainer Name="ModelDbStoreContainer">
           <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
@@ -352,7 +353,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="WoodDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ModelDb" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Color">
           <Key>
             <PropertyRef Name="COLOR_ID" />
@@ -396,6 +397,7 @@
           <Property Name="height" Type="Double" Nullable="false" />
           <Property Name="weight" Type="Double" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int32" />
           <NavigationProperty Name="Color" Relationship="Self.FK_ProductInfo_Color" FromRole="Product" ToRole="Color" />
           <NavigationProperty Name="ProductStore" Relationship="Self.FK_Product_ProductInfo" FromRole="Product" ToRole="ProductStore" />
         </EntityType>
@@ -704,11 +706,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(WoodDB.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ModelDb.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(WoodDB.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ModelDb.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -735,9 +737,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WoodDBStoreContainer" CdmEntityContainer="Store_wood_productsEntities1">
+        <EntityContainerMapping StorageEntityContainer="ModelDbStoreContainer" CdmEntityContainer="Store_wood_productsEntities1">
           <EntitySetMapping Name="Color">
-            <EntityTypeMapping TypeName="WoodDB.Color">
+            <EntityTypeMapping TypeName="ModelDb.Color">
               <MappingFragment StoreEntitySet="Color">
                 <ScalarProperty Name="COLOR_ID" ColumnName="COLOR_ID" />
                 <ScalarProperty Name="color1" ColumnName="color" />
@@ -745,7 +747,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Order">
-            <EntityTypeMapping TypeName="WoodDB.Order">
+            <EntityTypeMapping TypeName="ModelDb.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
                 <ScalarProperty Name="STORE_ID" ColumnName="STORE_ID" />
@@ -756,7 +758,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderDetail">
-            <EntityTypeMapping TypeName="WoodDB.OrderDetail">
+            <EntityTypeMapping TypeName="ModelDb.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetail">
                 <ScalarProperty Name="ORDER_DETAIL_ID" ColumnName="ORDER_DETAIL_ID" />
                 <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
@@ -766,7 +768,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="WoodDB.Product">
+            <EntityTypeMapping TypeName="ModelDb.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="PRODUCT_INFO_ID" ColumnName="PRODUCT_INFO_ID" />
                 <ScalarProperty Name="COLOR_ID" ColumnName="COLOR_ID" />
@@ -775,11 +777,12 @@
                 <ScalarProperty Name="height" ColumnName="height" />
                 <ScalarProperty Name="weight" ColumnName="weight" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductStore">
-            <EntityTypeMapping TypeName="WoodDB.ProductStore">
+            <EntityTypeMapping TypeName="ModelDb.ProductStore">
               <MappingFragment StoreEntitySet="ProductStore">
                 <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
                 <ScalarProperty Name="STORE_ID" ColumnName="STORE_ID" />
@@ -793,7 +796,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductType">
-            <EntityTypeMapping TypeName="WoodDB.ProductType">
+            <EntityTypeMapping TypeName="ModelDb.ProductType">
               <MappingFragment StoreEntitySet="ProductType">
                 <ScalarProperty Name="PRODUCT_TYPE_ID" ColumnName="PRODUCT_TYPE_ID" />
                 <ScalarProperty Name="type" ColumnName="type" />
@@ -802,7 +805,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Store">
-            <EntityTypeMapping TypeName="WoodDB.Store">
+            <EntityTypeMapping TypeName="ModelDb.Store">
               <MappingFragment StoreEntitySet="Store">
                 <ScalarProperty Name="STORE_ID" ColumnName="STORE_ID" />
                 <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
@@ -811,7 +814,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="StoreAddress">
-            <EntityTypeMapping TypeName="WoodDB.StoreAddress">
+            <EntityTypeMapping TypeName="ModelDb.StoreAddress">
               <MappingFragment StoreEntitySet="StoreAddress">
                 <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
                 <ScalarProperty Name="country" ColumnName="country" />
@@ -822,7 +825,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="WoodDB.sysdiagrams">
+            <EntityTypeMapping TypeName="ModelDb.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -833,7 +836,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Worker">
-            <EntityTypeMapping TypeName="WoodDB.Worker">
+            <EntityTypeMapping TypeName="ModelDb.Worker">
               <MappingFragment StoreEntitySet="Worker">
                 <ScalarProperty Name="WORKER_ID" ColumnName="WORKER_ID" />
                 <ScalarProperty Name="MANAGER_ID" ColumnName="MANAGER_ID" />
@@ -847,27 +850,27 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WorkerPosition">
-            <EntityTypeMapping TypeName="WoodDB.WorkerPosition">
+            <EntityTypeMapping TypeName="ModelDb.WorkerPosition">
               <MappingFragment StoreEntitySet="WorkerPosition">
                 <ScalarProperty Name="WORKER_POSITION_ID" ColumnName="WORKER_POSITION_ID" />
                 <ScalarProperty Name="position" ColumnName="position" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="WoodDB.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="WoodDB.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="WoodDB.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="WoodDB.Store.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ModelDb.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ModelDb.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ModelDb.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ModelDb.Store.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="WoodDB.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="ModelDb.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="WoodDB.Store.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ModelDb.Store.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="WoodDB.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="ModelDb.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -876,8 +879,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="WoodDB.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="WoodDB.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ModelDb.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ModelDb.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

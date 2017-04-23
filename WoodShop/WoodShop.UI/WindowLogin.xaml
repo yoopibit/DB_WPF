@@ -4,9 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WoodShop.UI"
+        xmlns:custom="clr-namespace:WoodShop.UI.ViewModel"
         mc:Ignorable="d"
         Title="WindowLogin" Height="300" Width="300">
+    <Window.Resources>
+        <custom:LoginViewModel x:Key="Login"></custom:LoginViewModel>
+    </Window.Resources>
     <Grid>
-        
+        <Label x:Name="label" Content="Login" FontSize="24" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" />
+        <Label x:Name="labelName" Content="Name" FontSize="14" HorizontalAlignment="Left" Margin="40,110,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Surname" Content="Surname" FontSize="14" HorizontalAlignment="Left" Margin="40,150,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxName" Text="{Binding Source={StaticResource Login}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=Name}" HorizontalAlignment="Left" Height="23" Margin="112,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"/>
+        <TextBox x:Name="textBoxSurnameName" HorizontalAlignment="Left" Text="{Binding Source={StaticResource Login}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SecondName}" Height="23" Margin="112,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"/>
+        <Button x:Name="buttonOk" Content="Ok" Command="{Binding Source={StaticResource Login}, Path=btnOkClick}" HorizontalAlignment="Left" Margin="200,208,0,0" VerticalAlignment="Top" Width="76" RenderTransformOrigin="0.51,-0.166" IsDefault="True" Background="#FFDDDEDD">
+        </Button>
+
+        <Button x:Name="buttonSignUp" Content="Sign Up" HorizontalAlignment="Left" Margin="200,233,0,0" VerticalAlignment="Top" Width="76" RenderTransformOrigin="0.51,-0.166"/>
     </Grid>
 </Window>

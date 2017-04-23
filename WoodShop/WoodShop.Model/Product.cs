@@ -27,6 +27,7 @@ namespace WoodShop.Model
         public double height { get; set; }
         public double weight { get; set; }
         public string name { get; set; }
+        public Nullable<int> id { get; set; }
     
         public virtual Color Color { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
