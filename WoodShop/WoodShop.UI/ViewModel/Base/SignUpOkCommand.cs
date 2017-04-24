@@ -7,12 +7,12 @@ using System.Windows.Input;
 
 namespace WoodShop.UI.ViewModel.Base
 {
-    class LoginRegisterCommand : ICommand
+    class SignUpOkCommand : ICommand
     {
         private Action<object> executeFunc;
         private Func<object, bool> canExecuteFunc;
 
-        public LoginRegisterCommand(Action<object> execute, Func<object, bool> canExecute = null)
+        public SignUpOkCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
             this.executeFunc = execute;
             canExecuteFunc = canExecute;
@@ -29,5 +29,11 @@ namespace WoodShop.UI.ViewModel.Base
         {
             executeFunc?.Invoke(parameter);
         }
+        public void RaiseCanExecuteChanged()
+        {
+            if (CanExecuteChanged != null)
+                CanExecuteChanged(this, new EventArgs());
+        }
+
     }
 }

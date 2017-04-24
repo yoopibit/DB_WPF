@@ -11,10 +11,11 @@ namespace WoodShop.Model.DataContexts.Context
     {
         IWorkerDbContext Worker { get; set; }
 
-        int CurrentStoreId
-        {
-            get; set;
-        }
+        IStores Store { get; set; }
+
+        IPositions Position { get; set; }
+
+        int CurrentStoreId { get; set; }
     }
 
 
@@ -48,10 +49,17 @@ namespace WoodShop.Model.DataContexts.Context
             }
 
             Worker = new Worker(_Context);
+            Store = new Stores(_Context);
+            Position = new Positions(_Context);
+            CurrentStoreId = -1;
         }
 
         public IWorkerDbContext Worker { get; set; }
 
         public int CurrentStoreId { get; set; }
-            }
+
+        public IStores Store { get; set; }
+
+        public IPositions Position { get; set; }
+    }
 }

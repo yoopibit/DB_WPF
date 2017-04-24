@@ -62,8 +62,13 @@
     <Compile Include="Color.cs">
       <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataContexts\Context\Positions.cs" />
+    <Compile Include="DataContexts\Context\Store.cs" />
     <Compile Include="DataContexts\Context\StoreWoodContext.cs" />
     <Compile Include="DataContexts\Context\Worker.cs" />
+    <Compile Include="Model\Position.cs" />
+    <Compile Include="Model\Store.cs" />
+    <Compile Include="Model\Worker.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
@@ -131,9 +136,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="StoreWoodShopDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

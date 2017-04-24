@@ -12,6 +12,11 @@ namespace WoodShop.UI.ViewModel
     public class LoginViewModel : ObservableObject
     {
         private LoginOkCommand objOkCommand;
+        private LoginRegisterCommand objRegCommand;
+        private LoginRegBackCommand objRegBackCommand;
+
+        private WindowLogin windowLogin;
+        private WindowRegister windowRegister;
 
         public string Name
         {
@@ -32,11 +37,39 @@ namespace WoodShop.UI.ViewModel
         }
 
         public LoginViewModel()
-        {
-            
-            // need to close current windows and load new
+        {   
             objOkCommand = new LoginOkCommand(null, StoreWoodContext.Instace.Worker.CheckWorker);
             this.PropertyChanged += LoginViewModel_PropertyChanged;
+
+            objRegBackCommand = new LoginRegBackCommand(CloseRegLoadLogin);
+            objRegCommand = new LoginRegisterCommand(CloseThisLoadRegister);
+        }
+        private void CloseThisLoadRegister(object obj)
+        {
+            
+            if (windowRegister == null)
+                windowRegister = new WindowRegister();
+
+            windowRegister.Show();
+
+            windowLogin = obj as WindowLogin;
+            windowLogin.Close();
+
+        }
+
+        private void CloseRegLoadLogin(object obj)
+        {
+            var windowRegister = obj as WindowRegister;
+
+            if (windowLogin == null)
+            {
+                windowLogin = new WindowLogin();
+            }
+
+            windowLogin.Show();
+
+            windowRegister.Close();
+
         }
 
         private void LoginViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -51,6 +84,20 @@ namespace WoodShop.UI.ViewModel
                 return objOkCommand;
             }
         } 
-    }
+        public ICommand btnRegisterClick
+        {
+            get
+            {
+                return objRegCommand;
+            }
+        }
 
+        public ICommand btnRegCloseClock
+        {
+            get
+            {
+                return objRegBackCommand;
+            }
+        }   
+    }
 }
