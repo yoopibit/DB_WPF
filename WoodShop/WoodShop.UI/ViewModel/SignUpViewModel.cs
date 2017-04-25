@@ -36,7 +36,7 @@ namespace WoodShop.UI.ViewModel
                 var pos = window.comboBoxPosition.SelectedValue as Position;
                 var manager = window.comboBoxManager.SelectedValue as WoodShop.Model.Model.Worker;
 
-                StoreWoodContext.Instace.Worker.AddWorker(window.textBoxName.Text, window.textBoxSurname.Text, pos.ID, manager.Id);
+                StoreWoodContext.Instace.Worker.AddWorker(window.textBoxName.Text, window.textBoxSurname.Text, pos.ID, manager.Id, "063-39-307-08");
             }
             catch(Exception ex)
             {

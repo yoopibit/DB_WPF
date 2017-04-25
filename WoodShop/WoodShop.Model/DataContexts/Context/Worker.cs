@@ -11,7 +11,7 @@ namespace WoodShop.Model.DataContexts.Context
     {
         bool CheckWorker(string name, string surname);
 
-        void AddWorker(string name, string surname, int posId, int managerId);
+        void AddWorker(string name, string surname, int posId, int managerId, string phone_number);
 
         IEnumerable<Model.Worker> GetAllManagers();
     }
@@ -62,7 +62,7 @@ namespace WoodShop.Model.DataContexts.Context
             return true;
         }
 
-        public void AddWorker(string name, string surname, int posId, int managerId)
+        public void AddWorker(string name, string surname, int posId, int managerId, string phone_number)
         {
             if (posId == 2 && managerId != -1)
                 throw new Exception("Please do not choose manager");
@@ -80,7 +80,7 @@ namespace WoodShop.Model.DataContexts.Context
             worker.WORKER_POSITION_ID = posId;
             worker.MANAGER_ID = managerId;
             worker.rating = 0;
-            worker.phone_number = "063-14-212-40";
+            worker.phone_number = phone_number;
             
             Context.Worker.Add(worker);
             Context.SaveChanges();
