@@ -16,6 +16,8 @@ namespace WoodShop.Model.DataContexts.Context
         IPositions Position { get; set; }
 
         int CurrentStoreId { get; set; }
+
+        int CurrentWorkerId { get; set; }
     }
 
 
@@ -61,5 +63,7 @@ namespace WoodShop.Model.DataContexts.Context
         public IStores Store { get; set; }
 
         public IPositions Position { get; set; }
+
+        public int CurrentWorkerId { get; set; }
     }
 }

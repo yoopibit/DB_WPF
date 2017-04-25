@@ -25,5 +25,6 @@ namespace WoodShop.Model.Model
                 return Name + " " + Surname;
             }
         }
+
     }
 }

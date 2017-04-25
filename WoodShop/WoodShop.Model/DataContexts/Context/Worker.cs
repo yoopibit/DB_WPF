@@ -14,6 +14,7 @@ namespace WoodShop.Model.DataContexts.Context
         void AddWorker(string name, string surname, int posId, int managerId, string phone_number);
 
         IEnumerable<Model.Worker> GetAllManagers();
+        Model.Worker GetCurrentWorker();
     }
 
     public class Worker : IWorkerDbContext
@@ -42,8 +43,9 @@ namespace WoodShop.Model.DataContexts.Context
             }
                 var inst = StoreWoodContext.Instace;
                 inst.CurrentStoreId = worker.STORE_ID;
+                inst.CurrentWorkerId = worker.WORKER_ID;
 
-            return true;
+                return true;
             }
             catch (Exception ex)
             {
@@ -112,6 +114,27 @@ namespace WoodShop.Model.DataContexts.Context
             }
 
             return managers;
+        }
+        public Model.Worker GetCurrentWorker()
+        {
+            var currentStrore = StoreWoodContext.Instace.CurrentStoreId;
+            var currentWorker = StoreWoodContext.Instace.CurrentWorkerId;
+
+            var workerDB = Context.Worker.Where(x => x.STORE_ID == currentStrore && x.WORKER_ID == currentWorker).FirstOrDefault();
+
+            if (workerDB == null)
+                throw new Exception("cannot found current worker in DB!");
+
+            Model.Worker worker = new Model.Worker()
+            {
+                Id = workerDB.WORKER_ID,
+                Name = workerDB.first_name,
+                Surname = workerDB.second_name,
+                Position = GetWorkerPosition(workerDB.WORKER_POSITION_ID),
+                Store = StoreWoodContext.Instace.Store.GetStore(workerDB.STORE_ID)
+            };
+
+            return worker;
         }
 
         private Position GetWorkerPosition(int workerPosition)

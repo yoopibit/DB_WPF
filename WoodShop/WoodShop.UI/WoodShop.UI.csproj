@@ -78,6 +78,7 @@
     <Compile Include="ViewModel\Base\LoginRegisterCommand.cs" />
     <Compile Include="ViewModel\Base\ObservableObject.cs" />
     <Compile Include="ViewModel\Base\SignUpOkCommand.cs" />
+    <Compile Include="ViewModel\ControViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\SignUpViewModel.cs" />
