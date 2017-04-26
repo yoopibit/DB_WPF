@@ -10,15 +10,15 @@
     <Window.Resources>
         <custom:ControViewModel x:Key="Control"></custom:ControViewModel>
     </Window.Resources>
-    <Grid>
+    <Grid Margin="0,0,2,0">
         <Label x:Name="labelHi" Content="Hi" FontSize="26" HorizontalAlignment="Left" Margin="29,30,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelName" Content="{Binding Source={StaticResource Control}, Path=Name}" FontSize="24" HorizontalAlignment="Left" Margin="83,30,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelSurname" Content="{Binding Source={StaticResource Control}, Path=Surname}" FontSize="24" HorizontalAlignment="Left" Margin="83,71,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelStore" Content="Store" FontSize="26" HorizontalAlignment="Left" Margin="29,115,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelStoreAddress" Content="{Binding Source={StaticResource Control}, Path=StoreAddress}" FontSize="16" HorizontalAlignment="Left" Margin="101,125,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelStoreDescription" Content="{Binding Source={StaticResource Control}, Path=StoreDescription}" FontSize="16" HorizontalAlignment="Left" Margin="101,160,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="buttonOrders" Content="Orders" FontSize="30" HorizontalAlignment="Left" Margin="10,197,0,0" VerticalAlignment="Top" Width="120" Height="112"/>
-        <Button x:Name="buttonProduct" Content="Products" FontSize="30" HorizontalAlignment="Left" Margin="135,197,0,0" VerticalAlignment="Top" Width="120" Height="112"/>
+        <Button x:Name="buttonOrders" Content="Orders" Command="{Binding Source={StaticResource Control}, Path=ShowWinOrders}" FontSize="30" HorizontalAlignment="Left" Margin="10,197,0,0" VerticalAlignment="Top" Width="120" Height="112"/>
+        <Button x:Name="buttonProduct" Content="Products" Command="{Binding Source={StaticResource Control}, Path=ShowWinProducts}" FontSize="30" HorizontalAlignment="Left" Margin="135,197,0,0" VerticalAlignment="Top" Width="120" Height="112"/>
         <Button x:Name="buttonOrder" Content="Make &#xD;&#xA;Order" FontSize="30" HorizontalAlignment="Left" Margin="260,197,0,0" VerticalAlignment="Top" Width="120" Height="112"/>
     </Grid>
 </Window>

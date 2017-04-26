@@ -369,7 +369,7 @@
           <Property Name="ORDER_ID" Type="Int32" Nullable="false" />
           <Property Name="STORE_ID" Type="Int32" />
           <Property Name="WORKER_ID" Type="Int32" />
-          <Property Name="total_price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="total_price" Type="Decimal" />
           <Property Name="date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Store" Relationship="Self.FK_Order_Store1" FromRole="Order" ToRole="Store" />
           <NavigationProperty Name="Worker" Relationship="Self.FK_Order_Worker" FromRole="Order" ToRole="Worker" />

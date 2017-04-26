@@ -72,6 +72,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\Base\ControlShowOrdersCommand.cs" />
+    <Compile Include="ViewModel\Base\ControlShowProductsCommand.cs" />
     <Compile Include="ViewModel\Base\DelegateCommand.cs" />
     <Compile Include="ViewModel\Base\LoginOkCommand.cs" />
     <Compile Include="ViewModel\Base\LoginRegBackCommand.cs" />
@@ -81,12 +83,20 @@
     <Compile Include="ViewModel\ControViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\OrdersViewModel.cs" />
+    <Compile Include="ViewModel\ProductsViewModel.cs" />
     <Compile Include="ViewModel\SignUpViewModel.cs" />
     <Compile Include="WindowControl.xaml.cs">
       <DependentUpon>WindowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowLogin.xaml.cs">
       <DependentUpon>WindowLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowOrders.xaml.cs">
+      <DependentUpon>WindowOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowProducts.xaml.cs">
+      <DependentUpon>WindowProducts.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowRegister.xaml.cs">
       <DependentUpon>WindowRegister.xaml</DependentUpon>
@@ -108,6 +118,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowProducts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

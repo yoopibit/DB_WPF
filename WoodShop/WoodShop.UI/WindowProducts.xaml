@@ -1,0 +1,20 @@
+﻿<Window x:Class="WoodShop.UI.WindowProducts"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WoodShop.UI"
+        xmlns:custom="clr-namespace:WoodShop.UI.ViewModel"
+        mc:Ignorable="d"
+        Title="Products" Height="350" Width="500">
+    <Window.Resources>
+        <custom:ProductsViewModel x:Key="Product"></custom:ProductsViewModel>
+    </Window.Resources>
+
+    <Grid>
+        <Label x:Name="labelOrders" Content="Products" FontSize="30" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dataGrid" ItemsSource ="{Binding Source={StaticResource Product}, Path=GetProducts}" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Height="244" Width="472"></DataGrid>
+    </Grid>
+</Window>
+
+    

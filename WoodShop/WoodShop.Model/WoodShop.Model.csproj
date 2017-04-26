@@ -62,11 +62,15 @@
     <Compile Include="Color.cs">
       <DependentUpon>StoreWoodShopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataContexts\Context\Orders.cs" />
     <Compile Include="DataContexts\Context\Positions.cs" />
+    <Compile Include="DataContexts\Context\Products.cs" />
     <Compile Include="DataContexts\Context\Store.cs" />
     <Compile Include="DataContexts\Context\StoreWoodContext.cs" />
     <Compile Include="DataContexts\Context\Worker.cs" />
+    <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Position.cs" />
+    <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Store.cs" />
     <Compile Include="Model\Worker.cs" />
     <Compile Include="Order.cs">

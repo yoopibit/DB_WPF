@@ -1,0 +1,17 @@
+﻿<Window x:Class="WoodShop.UI.WindowOrders"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WoodShop.UI"
+        xmlns:custom="clr-namespace:WoodShop.UI.ViewModel"
+        mc:Ignorable="d"
+        Title="Orders" Height="400" Width="600">
+    <Window.Resources>
+        <custom:OrdersViewModel x:Key="Orders"></custom:OrdersViewModel>
+    </Window.Resources>
+    <Grid>
+        <Label x:Name="labelOrders" Content="Orders" FontSize="30" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dataGrid" ItemsSource ="{Binding Source={StaticResource Orders}, Path=Orders}" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Height="294" Width="572"/>
+    </Grid>
+</Window>
